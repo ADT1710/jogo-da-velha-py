@@ -1,3 +1,7 @@
+import time
+
+from jogador import JogadorHumano, JogadorComputador
+
 class JogoDaVelha:
     def __init__(self):
         self.tabuleiro = [" " for _ in range(9)]
@@ -45,6 +49,15 @@ class JogoDaVelha:
         if all([local == letra for local in coluna]):
             return True
 
+        if quadrado % 2 == 0:
+            diagonal1 =[self.tabuleiro[i] for i in [0,4,8]]
+            if all([local == letra for local in diagonal1]):
+                return True
+            diagonal2 = [self.tabuleiro[i] for i in [2, 4, 6]]
+            if all([local == letra for local in diagonal2]):
+                return True
+
+        return False
 
 def jogar(jogo, jogador_x, jogador_o, printa_jogo=True):
     if printa_jogo:
@@ -71,5 +84,13 @@ def jogar(jogo, jogador_x, jogador_o, printa_jogo=True):
 
             letra = 'O' if letra == 'X' else 'X'
 
-        if printa_jogo:
-            print("É um Empate!")
+        time.sleep(0.8)
+
+    if printa_jogo:
+        print("É um Empate!")
+
+if __name__ == "__main__":
+    jogador_x = JogadorHumano('X')
+    jogador_o = JogadorComputador('O')
+    t = JogoDaVelha()
+    jogar(t, jogador_x, jogador_o, printa_jogo=True)
