@@ -25,7 +25,7 @@ class JogadorHumano(Jogador):
         quadrado_valido = False
         val = None
         while not quadrado_valido:
-            quadrado = input(self.letra + "\ turno. Entre com um movimento (0-9): ")
+            quadrado = input(self.letra + ", é seu turno. Entre com um movimento (0-9): ")
             try:
                 val = int(quadrado)
                 if val not in jogo.movimentos_disponiveis():
